@@ -24,15 +24,29 @@ public class Main2108 {
         }
 
         //산술평균
-        float sansul = (float)sum/(float)numOfNum;
+        float sansulMinus;
+        float sansulPlus;
         int sansulResult;
-        if(sansul*10%10 >= 5){
-            sansulResult = (int)(sansul+1);
+        if(sum<0){
+            sansulMinus = (float)(sum*(-1))/(float)numOfNum;
+            if(sansulMinus*10%10 >= 5){
+                sansulResult = (int)(sansulMinus+1);
+            }
+            else{
+                sansulResult = (int)(sansulMinus);
+            }
+            bw.write(String.valueOf((-1)*sansulResult) + "\n");
         }
         else{
-            sansulResult = (int)(sansul);
+            sansulPlus = (float)sum/(float)numOfNum;
+            if(sansulPlus*10%10 >= 5){
+                sansulResult = (int)(sansulPlus+1);
+            }
+            else{
+                sansulResult = (int)(sansulPlus);
+            }
+            bw.write(String.valueOf(sansulResult) + "\n");
         }
-        bw.write(String.valueOf(sansulResult+"\n"));
 
         //중앙값
         Arrays.sort(arr);
@@ -53,7 +67,16 @@ public class Main2108 {
         for(int i=0; i<modeArr.length; i++){
             if(modeArr[i]>max){
                 max = modeArr[i];
-                mode = i + sub;
+            }
+        }
+
+        int count = 0;
+        for(int i=0; i<modeArr.length; i++){
+            if(modeArr[i]==max){
+                count++;
+                if(count<=2){
+                    mode = sub+i;
+                }
             }
         }
 
